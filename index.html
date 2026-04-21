@@ -67,3 +67,45 @@
       <input id="budgetLimit" type="number" placeholder="Budžeta limits (€)">
       <button id="addBudgetBtn">Pievienot budžetu</button>
 
+      <ul id="budgetList"></ul>
+    </div>
+
+    <!-- Card: Kopsavilkums -->
+    <div class="card">
+      <h2>Kopsavilkums</h2>
+      <p>Ienākumi: <span id="totalIncome">0</span> €</p>
+      <p>Izdevumi: <span id="totalExpense">0</span> €</p>
+      <p>Balanss: <span id="balance">0</span> €</p>
+
+      <button id="exportCsvBtn">Eksportēt CSV</button>
+    </div>
+
+    <!-- Card: Grafiki -->
+    <div class="card">
+      <h2>Ienākumi vs izdevumi</h2>
+      <canvas id="incomeExpenseChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Izdevumi pa kategorijām</h2>
+      <canvas id="categoryChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Mēneša analīze</h2>
+      <canvas id="monthlyChart"></canvas>
+    </div>
+
+    <!-- Card: Ieraksti -->
+    <div class="card">
+      <h2>Ieraksti</h2>
+      <ul id="list"></ul>
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
