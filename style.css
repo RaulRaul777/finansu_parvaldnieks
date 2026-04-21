@@ -93,3 +93,23 @@ ul {
 .delete-btn:hover {
   background: #e60000;
 }
+#list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#list li button {
+  margin-left: 15px;
+  flex-shrink: 0;
+}
+.chart-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+canvas {
+  max-height: 250px;
+}

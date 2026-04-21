@@ -87,21 +87,12 @@ function getFilteredRecords() {
 // ======== IERAKSTU ATTĒLOŠANA ========
 function render() {
   const filtered = getFilteredRecords();
-  list.innerHTML = "";
-
-  let income = 0, expense = 0;
-
-  filtered.forEach((r, i) => {
-    if (r.type === "income") income += r.amount;
-    else expense += r.amount;
-
-list.innerHTML += `
-  <li class="record-item">
+  list.innerHTML += `
+  <li>
     <span>${r.date} — <b>${r.amount}€</b> (${r.category}) — ${r.desc}</span>
-    <button class="delete-btn" onclick="deleteRecord(${i})">✖</button>
+    <button onclick="deleteRecord(${i})">Dzēst</button>
   </li>
-`;
-
+';
   });
 
   totalIncome.textContent = income;
