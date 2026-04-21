@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+ HEAD
 const categoryIcons = {
   "Pārtika": "🍔",
   "Transports": "🚗",
@@ -381,7 +381,7 @@ function loadBudgets() {
 function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
-=======
+
 const categoryIcons = {
   "Pārtika": "🍔",
   "Transports": "🚗",
@@ -761,4 +761,4 @@ function loadBudgets() {
   const data = localStorage.getItem("finansuBudgets");
   return data ? JSON.parse(data) : [];
 }
->>>>>>> da8d9dda737b252663908c58b9df693c9ff0d384
+
