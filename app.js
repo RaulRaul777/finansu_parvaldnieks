@@ -1,7 +1,11 @@
 // ======== DATU STRUKTŪRA ========
-let records = JSON.parse(localStorage.getItem("records") || "[]");
-let categories = JSON.parse(localStorage.getItem("categories") || `["Pārtika","Degviela","Izklaide","Kredīti"]`);
-let budgets = JSON.parse(localStorage.getItem("budgets") || "[]");
+let categories = JSON.parse(localStorage.getItem("categories"));
+
+if (!categories || !Array.isArray(categories) || categories.length === 0) {
+  categories = ["Pārtika", "Degviela", "Izklaide", "Kredīti", "Citi"];
+  localStorage.setItem("categories", JSON.stringify(categories));
+}
+
 
 // ======== ELEMENTI ========
 const amount = document.getElementById("amount");
