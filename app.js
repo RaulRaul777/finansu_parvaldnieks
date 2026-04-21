@@ -47,6 +47,7 @@ function renderCategories() {
   localStorage.setItem("categories", JSON.stringify(categories));
 }
 
+
 addCategoryBtn.onclick = () => {
   if (!newCategory.value.trim()) return;
   categories.push(newCategory.value.trim());
