@@ -95,12 +95,13 @@ function render() {
     if (r.type === "income") income += r.amount;
     else expense += r.amount;
 
-    list.innerHTML += `
-      <li>
-        ${r.date} — <b>${r.amount}€</b> (${r.category}) — ${r.desc}
-        <button onclick="deleteRecord(${i})">Dzēst</button>
-      </li>
-    `;
+list.innerHTML += `
+  <li class="record-item">
+    <span>${r.date} — <b>${r.amount}€</b> (${r.category}) — ${r.desc}</span>
+    <button class="delete-btn" onclick="deleteRecord(${i})">✖</button>
+  </li>
+`;
+
   });
 
   totalIncome.textContent = income;
