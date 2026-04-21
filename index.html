@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <title>Personīgais finanšu pārvaldnieks</title>
+  <link rel="stylesheet" href="style.css">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="apple-touch-startup-image" href="icons/splash.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+
+</head>
+<body>
+  <h1>Personīgais finanšu pārvaldnieks</h1>
+
+  <!-- Tumšā režīma poga -->
+  <button id="darkModeToggle">Tumšais / Gaišais režīms</button>
+
+  <!-- Forma -->
+  <div class="form">
+    <input id="amount" type="number" placeholder="Summa (€)">
+    <input id="desc" type="text" placeholder="Apraksts">
+
+    <select id="type">
+      <option value="income">Ienākums</option>
+      <option value="expense">Izdevums</option>
+    </select>
+
+    <select id="categorySelect"></select>
+
+    <input id="newCategory" type="text" placeholder="Jauna kategorija">
+    <button id="addCategoryBtn">Pievienot kategoriju</button>
+
+    <button id="addBtn">Pievienot ierakstu</button>
+  </div>
+
+  <!-- Filtri un meklēšana -->
+  <div class="form">
+    <h2>Filtri un meklēšana</h2>
+    <select id="filterType">
+      <option value="all">Visi tipi</option>
+      <option value="income">Tikai ienākumi</option>
+      <option value="expense">Tikai izdevumi</option>
+    </select>
+
+    <select id="filterCategory">
+      <option value="all">Visas kategorijas</option>
+    </select>
+
+    <input id="searchInput" type="text" placeholder="Meklēt pēc apraksta">
+  </div>
+
+  <!-- Budžeta mērķi -->
+  <div class="form">
+    <h2>Budžeta mērķi</h2>
+    <select id="budgetCategorySelect"></select>
+    <input id="budgetLimit" type="number" placeholder="Budžeta limits (€)">
+    <button id="addBudgetBtn">Pievienot budžetu</button>
+    <ul id="budgetList"></ul>
+  </div>
+
+  <!-- Kopsavilkums -->
+  <h2>Kopsavilkums</h2>
+  <div class="summary">
+    <p>Kopējie ienākumi: <span id="totalIncome">0</span> €</p>
+    <p>Kopējie izdevumi: <span id="totalExpense">0</span> €</p>
+    <p>Balanss: <span id="balance">0</span> €</p>
+    <button id="exportCsvBtn">Eksportēt CSV</button>
+  </div>
+
+  <!-- Grafiki -->
+  <div class="chart-container">
+    <h2>Ienākumi vs izdevumi</h2>
+    <canvas id="incomeExpenseChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h2>Izdevumi pa kategorijām</h2>
+    <canvas id="categoryChart"></canvas>
+  </div>
+
+  <!-- Ieraksti -->
+  <h2>Ieraksti</h2>
+  <ul id="list"></ul>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+<link rel="manifest" href="manifest.json">
+
+<body>
+  <div class="header">
+    <div class="header-title">Personīgais finanšu pārvaldnieks</div>
+    <button id="darkModeToggle">Dark</button>
+  </div>
+
+  <div class="main">
+    <div class="card form" id="form">
+      <!-- tava forma -->
+    </div>
+
+    <div class="card summary" id="summary">
+      <!-- kopsavilkums -->
+    </div>
+
+    <div class="card chart-container" id="charts">
+      <!-- grafiki -->
+    </div>
+
+    <div class="card" id="listCard">
+      <h2>Ieraksti</h2>
+      <ul id="list"></ul>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button onclick="scrollToSection('form')"><span class="icon">➕</span>Jauns</button>
+    <button onclick="scrollToSection('summary')"><span class="icon">📊</span>Kops.</button>
+    <button onclick="scrollToSection('charts')"><span class="icon">📈</span>Grafiki</button>
+    <button onclick="scrollToSection('listCard')"><span class="icon">📜</span>Ieraksti</button>
+  </div>
+</body>
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,291 @@
+<<<<<<< HEAD
+/* ====== Mainīgie (gaišais/tumšais režīms) ====== */
+:root {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --text: #000;
+  --accent: #007bff;
+  --income: #2ecc71;
+  --expense: #e74c3c;
+}
+
+body.dark {
+  --bg: #1e1e1e;
+  --card: #2a2a2a;
+  --text: #fff;
+}
+
+/* ====== Globālais stils ====== */
+body {
+  font-family: Arial, sans-serif;
+  max-width: 650px;
+  margin: 20px auto;
+  padding: 0 10px;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+/* ====== Formas ====== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.form input, .form select, .form button {
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.form button:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+
+/* ====== Kopsavilkums ====== */
+.summary {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ====== Ierakstu saraksts ====== */
+#list {
+  list-style: none;
+  padding: 0;
+}
+
+#list li {
+  background: var(--card);
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: 0.15s ease;
+}
+
+#list li:hover {
+  transform: scale(1.01);
+}
+
+/* Krāsainās joslas */
+#list li.income {
+  border-left: 6px solid var(--income);
+}
+
+#list li.expense {
+  border-left: 6px solid var(--expense);
+}
+
+/* Dzēšanas poga */
+#list li button {
+  background: var(--expense);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#list li button:hover {
+  background: #c0392b;
+}
+
+/* Tumšā režīma poga */
+#darkModeToggle {
+  display: block;
+  margin: 10px auto 20px;
+  padding: 10px 15px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#darkModeToggle:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Grafiku konteineri */
+.chart-container {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+=======
+/* ====== Mainīgie (gaišais/tumšais režīms) ====== */
+:root {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --text: #000;
+  --accent: #007bff;
+  --income: #2ecc71;
+  --expense: #e74c3c;
+}
+
+body.dark {
+  --bg: #1e1e1e;
+  --card: #2a2a2a;
+  --text: #fff;
+}
+
+/* ====== Globālais stils ====== */
+body {
+  font-family: Arial, sans-serif;
+  max-width: 650px;
+  margin: 20px auto;
+  padding: 0 10px;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+/* ====== Formas ====== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.form input, .form select, .form button {
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.form button:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+
+/* ====== Kopsavilkums ====== */
+.summary {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ====== Ierakstu saraksts ====== */
+#list {
+  list-style: none;
+  padding: 0;
+}
+
+#list li {
+  background: var(--card);
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: 0.15s ease;
+}
+
+#list li:hover {
+  transform: scale(1.01);
+}
+
+/* Krāsainās joslas */
+#list li.income {
+  border-left: 6px solid var(--income);
+}
+
+#list li.expense {
+  border-left: 6px solid var(--expense);
+}
+
+/* Dzēšanas poga */
+#list li button {
+  background: var(--expense);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#list li button:hover {
+  background: #c0392b;
+}
+
+/* Tumšā režīma poga */
+#darkModeToggle {
+  display: block;
+  margin: 10px auto 20px;
+  padding: 10px 15px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#darkModeToggle:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Grafiku konteineri */
+.chart-container {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+>>>>>>> da8d9dda737b252663908c58b9df693c9ff0d384
