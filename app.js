@@ -1,4 +1,4 @@
-// ======== DATU STRUKTŪRA ========
+// ===== DROŠAIS KATEGORIJU STARTS =====
 let categories = JSON.parse(localStorage.getItem("categories"));
 
 if (!categories || !Array.isArray(categories) || categories.length === 0) {
@@ -6,8 +6,13 @@ if (!categories || !Array.isArray(categories) || categories.length === 0) {
   localStorage.setItem("categories", JSON.stringify(categories));
 }
 
+// ===== IERAKSTI =====
+let records = JSON.parse(localStorage.getItem("records") || "[]");
 
-// ======== ELEMENTI ========
+// ===== BUDŽETI =====
+let budgets = JSON.parse(localStorage.getItem("budgets") || "[]");
+
+// ===== ELEMENTI =====
 const amount = document.getElementById("amount");
 const desc = document.getElementById("desc");
 const type = document.getElementById("type");
@@ -32,7 +37,7 @@ const balance = document.getElementById("balance");
 
 const exportCsvBtn = document.getElementById("exportCsvBtn");
 
-// ======== KATEGORIJAS ========
+// ===== KATEGORIJAS =====
 function renderCategories() {
   categorySelect.innerHTML = "";
   filterCategory.innerHTML = `<option value="all">Visas kategorijas</option>`;
@@ -47,7 +52,6 @@ function renderCategories() {
   localStorage.setItem("categories", JSON.stringify(categories));
 }
 
-
 addCategoryBtn.onclick = () => {
   if (!newCategory.value.trim()) return;
   categories.push(newCategory.value.trim());
@@ -55,7 +59,7 @@ addCategoryBtn.onclick = () => {
   renderCategories();
 };
 
-// ======== IERAKSTU PIEVIENOŠANA ========
+// ===== IERAKSTU PIEVIENOŠANA =====
 addBtn.onclick = () => {
   if (!amount.value || !desc.value) return;
 
@@ -74,12 +78,12 @@ addBtn.onclick = () => {
   render();
 };
 
-// ======== SAGLABĀŠANA ========
+// ===== SAGLABĀŠANA =====
 function save() {
   localStorage.setItem("records", JSON.stringify(records));
 }
 
-// ======== FILTRĒŠANA ========
+// ===== FILTRI =====
 function getFilteredRecords() {
   return records.filter(r => {
     if (filterType.value !== "all" && r.type !== filterType.value) return false;
@@ -89,15 +93,24 @@ function getFilteredRecords() {
   });
 }
 
-// ======== IERAKSTU ATTĒLOŠANA ========
+// ===== IERAKSTU ATTĒLOŠANA =====
 function render() {
   const filtered = getFilteredRecords();
-  list.innerHTML += `
-  <li>
-    <span>${r.date} — <b>${r.amount}€</b> (${r.category}) — ${r.desc}</span>
-    <button onclick="deleteRecord(${i})">Dzēst</button>
-  </li>
-';
+  list.innerHTML = "";
+
+  let income = 0;
+  let expense = 0;
+
+  filtered.forEach((r, i) => {
+    if (r.type === "income") income += r.amount;
+    else expense += r.amount;
+
+    list.innerHTML += `
+      <li class="record-item">
+        <span>${r.date} — <b>${r.amount}€</b> (${r.category}) — ${r.desc}</span>
+        <button class="delete-btn" onclick="deleteRecord(${i})">Dzēst</button>
+      </li>
+    `;
   });
 
   totalIncome.textContent = income;
@@ -113,7 +126,7 @@ function deleteRecord(i) {
   render();
 }
 
-// ======== BUDŽETI ========
+// ===== BUDŽETI =====
 addBudgetBtn.onclick = () => {
   if (!budgetLimit.value) return;
 
@@ -138,23 +151,7 @@ function renderBudgets() {
   });
 }
 
-// ======== CSV EKSPORTS ========
-exportCsvBtn.onclick = () => {
-  let csv = "Summa,Apraksts,Veids,Kategorija,Datums\n";
-  records.forEach(r => {
-    csv += `${r.amount},${r.desc},${r.type},${r.category},${r.date}\n`;
-  });
-
-  const blob = new Blob([csv], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "finansu-dati.csv";
-  a.click();
-};
-
-// ======== GRAFIKI ========
+// ===== GRAFIKI =====
 let incomeExpenseChart, categoryChart;
 
 function renderCharts() {
@@ -170,7 +167,6 @@ function renderCharts() {
     }
   });
 
-  // Income vs Expense
   if (incomeExpenseChart) incomeExpenseChart.destroy();
   incomeExpenseChart = new Chart(document.getElementById("incomeExpenseChart"), {
     type: "bar",
@@ -183,7 +179,6 @@ function renderCharts() {
     }
   });
 
-  // Category chart
   if (categoryChart) categoryChart.destroy();
   categoryChart = new Chart(document.getElementById("categoryChart"), {
     type: "doughnut",
@@ -197,7 +192,7 @@ function renderCharts() {
   });
 }
 
-// ======== TUMŠAIS REŽĪMS ========
+// ===== TUMŠAIS REŽĪMS =====
 document.getElementById("darkModeToggle").onclick = () => {
   document.documentElement.classList.toggle("dark");
   localStorage.setItem("theme", document.documentElement.classList.contains("dark") ? "dark" : "light");
@@ -207,7 +202,9 @@ if (localStorage.getItem("theme") === "dark") {
   document.documentElement.classList.add("dark");
 }
 
-// ======== START ========
-renderCategories();
-renderBudgets();
-render();
+// ===== START =====
+document.addEventListener("DOMContentLoaded", () => {
+  renderCategories();
+  renderBudgets();
+  render();
+});
